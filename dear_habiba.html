@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dear Habiba — A Letter to Every Woman</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6C0;
+    --purple-deep: #1A0A2E;
+    --purple-rich: #2D1052;
+    --purple-mid: #4A1878;
+    --purple-bright: #7B2FBE;
+    --purple-accent: #9D4EDD;
+    --cream: #FDF8EE;
+    --text-light: rgba(253,248,238,0.88);
+    --text-dim: rgba(253,248,238,0.5);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--purple-deep);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* === BACKGROUND === */
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(74,24,120,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(45,16,82,0.8) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 60% 30%, rgba(157,78,221,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #0E0520 0%, #1A0A2E 40%, #150825 100%);
+    pointer-events: none;
+  }
+
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(201,168,76,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 8%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 15%, rgba(201,168,76,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 5%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 25%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 8% 55%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 60%, rgba(201,168,76,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 45% 70%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 68% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 90%, rgba(201,168,76,0.3) 0%, transparent 100%);
+  }
+
+  /* === ORNAMENTAL BORDERS === */
+  .corner-ornament {
+    position: fixed; width: 120px; height: 120px; z-index: 1; pointer-events: none;
+    opacity: 0.4;
+  }
+  .corner-ornament svg { width: 100%; height: 100%; }
+  .corner-tl { top: 20px; left: 20px; }
+  .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+  .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+  .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
+
+  /* === PAGE WRAPPER === */
+  .page {
+    position: relative; z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 80px 48px 100px;
+    min-height: 100vh;
+  }
+
+  /* === HEADER === */
+  .header {
+    text-align: center;
+    padding-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.2s forwards;
+  }
+
+  .occasion-tag {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 6px 20px;
+    margin-bottom: 36px;
+  }
+
+  .title-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.4rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .title-sub {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  /* === GOLD DIVIDER === */
+  .gold-rule {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    margin: 40px auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+  }
+  .gold-rule-line {
+    flex: 1; max-width: 140px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .gold-rule-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .gold-rule-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  /* === STANZAS === */
+  .stanza {
+    text-align: center;
+    margin: 0 auto 2rem;
+    max-width: 620px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .stanza.visible { opacity: 1; transform: translateY(0); }
+
+  .stanza p {
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-light);
+    letter-spacing: 0.01em;
+  }
+
+  .stanza.italic p { font-style: italic; color: var(--gold-pale); }
+  .stanza.bold p { font-weight: 600; font-size: clamp(1.1rem, 2.5vw, 1.35rem); color: var(--cream); }
+  .stanza.accent p { color: var(--gold-light); font-style: italic; font-size: clamp(1rem, 2.2vw, 1.2rem); }
+  .stanza.large p { font-size: clamp(1.3rem, 3vw, 1.75rem); font-weight: 600; line-height: 1.6; }
+  .stanza.xl p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* === SECTION LABEL === */
+  .section-label {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--gold);
+    margin: 56px auto 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .section-label.visible { opacity: 1; transform: translateY(0); }
+
+  /* === PULL QUOTE === */
+  .pull-quote {
+    margin: 48px auto;
+    max-width: 580px;
+    padding: 32px 40px;
+    border-left: 3px solid var(--gold);
+    border-right: 3px solid var(--gold);
+    position: relative;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 1s ease, transform 0.8s ease;
+  }
+  .pull-quote.visible { opacity: 1; transform: scale(1); }
+  .pull-quote::before, .pull-quote::after {
+    content: '';
+    position: absolute; left: -3px; right: -3px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .pull-quote::before { top: 0; }
+  .pull-quote::after { bottom: 0; }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.25rem, 3vw, 1.7rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  /* === DIVIDER ORNAMENT === */
+  .ornament-divider {
+    text-align: center;
+    margin: 52px auto;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 1rem;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .ornament-divider.visible { opacity: 0.7; }
+
+  /* === CLOSING === */
+  .closing {
+    text-align: center;
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.25);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .closing.visible { opacity: 1; transform: translateY(0); }
+  .closing-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .closing-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+  .closing-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+  }
+
+  /* === FOOTER NOTE === */
+  .footer-note {
+    text-align: center;
+    margin-top: 60px;
+    padding: 24px;
+    border: 1px solid rgba(201,168,76,0.15);
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+  }
+  .footer-note.visible { opacity: 1; }
+  .footer-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .footer-note strong {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* === GLOW PULSE on title === */
+  .title-line span {
+    display: inline-block;
+    background: linear-gradient(135deg, #FDF8EE 30%, var(--gold-light) 60%, #FDF8EE 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+    background-size: 200% auto;
+  }
+  @keyframes shimmer {
+    0%   { background-position: 0% center; }
+    50%  { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  /* === SCROLL LINE === */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0%;
+    background: linear-gradient(90deg, var(--purple-bright), var(--gold));
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 60px 28px 80px; }
+    .corner-ornament { width: 70px; height: 70px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="stars"></div>
+<div class="scroll-progress" id="scrollBar"></div>
+
+<!-- Corner ornaments -->
+<div class="corner-ornament corner-tl">
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 5 L5 45 M5 5 L45 5" stroke="#C9A84C" stroke-width="1.5"/>
+    <path d="M5 5 L25 25" stroke="#C9A84C" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="5" cy="5" r="3" fill="#C9A84C"/>
+    <circle cx="45" cy="5" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="5" cy="45" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <path d="M15 5 Q20 20 5 25" stroke="#C9A84C" stroke-width="0.6" opacity="0.4" fill="none"/>
+  </svg>
+</div>
+<div class="corner-ornament corner-tr">
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 5 L5 45 M5 5 L45 5" stroke="#C9A84C" stroke-width="1.5"/>
+    <circle cx="5" cy="5" r="3" fill="#C9A84C"/>
+    <circle cx="45" cy="5" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="5" cy="45" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <path d="M15 5 Q20 20 5 25" stroke="#C9A84C" stroke-width="0.6" opacity="0.4" fill="none"/>
+  </svg>
+</div>
+<div class="corner-ornament corner-bl">
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 5 L5 45 M5 5 L45 5" stroke="#C9A84C" stroke-width="1.5"/>
+    <circle cx="5" cy="5" r="3" fill="#C9A84C"/>
+    <circle cx="45" cy="5" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="5" cy="45" r="1.5" fill="#C9A84C" opacity="0.6"/>
+  </svg>
+</div>
+<div class="corner-ornament corner-br">
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 5 L5 45 M5 5 L45 5" stroke="#C9A84C" stroke-width="1.5"/>
+    <circle cx="5" cy="5" r="3" fill="#C9A84C"/>
+    <circle cx="45" cy="5" r="1.5" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="5" cy="45" r="1.5" fill="#C9A84C" opacity="0.6"/>
+  </svg>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="occasion-tag">International Women's Day &nbsp;·&nbsp; A Letter for Every Woman</div>
+    <div class="title-line"><span>Dear Woman,</span></div>
+    <div class="title-sub">This letter was written for you.</div>
+  </div>
+
+  <div class="gold-rule">
+    <div class="gold-rule-line"></div>
+    <div class="gold-rule-diamond"></div>
+    <div class="gold-rule-text">✦</div>
+    <div class="gold-rule-diamond"></div>
+    <div class="gold-rule-line"></div>
+  </div>
+
+  <!-- I -->
+  <div class="stanza">
+    <p>There is a girl in your story</p>
+    <p>who learned early that love is a kind of labour —</p>
+    <p>that to show up for others</p>
+    <p>is to be handed a quiet crown</p>
+    <p>no one warns you about.</p>
+  </div>
+
+  <div class="stanza italic">
+    <p>She carried it well.</p>
+    <p>Even when she didn't know she was carrying it.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- II -->
+  <div class="stanza">
+    <p>Then came the moment she left the familiar —</p>
+    <p>the city, the comfort, the version of herself</p>
+    <p>she already knew how to be.</p>
+    <p>She arrived somewhere new</p>
+    <p>with a bag full of hope</p>
+    <p>and a heart full of questions</p>
+    <p>she hadn't yet learned to ask out loud.</p>
+  </div>
+
+  <div class="stanza accent">
+    <p>Independence, it turns out,</p>
+    <p>is not a door you walk through once.</p>
+    <p>It is a hallway.</p>
+    <p>And some mornings, it is very long.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- III - Week Five -->
+  <div class="section-label">And then there was the hardest week.</div>
+
+  <div class="stanza">
+    <p>You remember it.</p>
+    <p>The weight of it sitting in your chest</p>
+    <p>like a stone that hadn't decided</p>
+    <p>whether to sink or stay.</p>
+    <p>The deadline breathing.</p>
+    <p>The voice inside asking —</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>Who do you think you are<br/>to be here?</p>
+  </div>
+
+  <div class="stanza bold">
+    <p>But you stayed.</p>
+    <p>You did not leave quietly.</p>
+    <p>You did not leave at all.</p>
+  </div>
+
+  <div class="stanza">
+    <p>And that is the thing about grit —</p>
+    <p>it is almost never loud.</p>
+    <p>It does not announce itself.</p>
+    <p>It is just you,</p>
+    <p>at an unglamorous hour,</p>
+    <p>choosing to continue.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- IV - Voice -->
+  <div class="stanza">
+    <p>Then you began to speak.</p>
+    <p>Not because the fear left —</p>
+    <p>but because you decided</p>
+    <p>your voice mattered more</p>
+    <p>than your silence.</p>
+  </div>
+
+  <div class="stanza accent">
+    <p>Step by step.</p>
+    <p>Risk by quiet risk.</p>
+    <p>Word by careful word.</p>
+  </div>
+
+  <div class="stanza">
+    <p>And the world looked back and said:</p>
+    <p>we see you.</p>
+    <p>Not because you were perfect —</p>
+    <p>but because you were consistent.</p>
+    <p>And consistency, it turns out,</p>
+    <p>is its own kind of courage.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- V - Message to future self -->
+  <div class="section-label">So here is what I need you to remember:</div>
+
+  <div class="stanza xl">
+    <p>You were never behind.</p>
+    <p>You were building foundation</p>
+    <p>while others were building noise.</p>
+  </div>
+
+  <div class="stanza">
+    <p>The late nights matter.</p>
+    <p>The invisible effort matters.</p>
+    <p>The version of you who almost gave up</p>
+    <p>and didn't —</p>
+    <p>she matters most of all.</p>
+  </div>
+
+  <div class="stanza accent">
+    <p>Keep betting on your curiosity.</p>
+    <p>It is one of your greatest gifts.</p>
+    <p>Not because it always leads to answers —</p>
+    <p>but because it refuses to stop asking questions.</p>
+  </div>
+
+  <div class="stanza">
+    <p>And do not shrink your voice</p>
+    <p>just because you are still learning.</p>
+    <p>The people shaping the future</p>
+    <p>are not the ones who know everything.</p>
+    <p>They are the ones willing to begin</p>
+    <p>anyway.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- VI - The woman -->
+  <div class="stanza">
+    <p>You are a woman who understands</p>
+    <p>that building something that matters</p>
+    <p>is not optional where you come from.</p>
+    <p>It is survival.</p>
+    <p>It is love.</p>
+    <p>It is the future you are choosing</p>
+    <p>to shape with your own hands.</p>
+  </div>
+
+  <div class="stanza">
+    <p>One day you will walk into a room</p>
+    <p>where decisions about the future are being made</p>
+    <p>and you will not hesitate at the door.</p>
+    <p>You will not ask for permission</p>
+    <p>to take up space.</p>
+    <p>You will simply enter.</p>
+    <p>And something in the room will shift.</p>
+  </div>
+
+  <div class="stanza bold">
+    <p>Because that is what you do.</p>
+    <p>You shift things.</p>
+    <p>Quietly.</p>
+    <p>Persistently.</p>
+    <p>Powerfully.</p>
+  </div>
+
+  <div class="ornament-divider">✦&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;✦</div>
+
+  <!-- VII - Closing poem -->
+  <div class="stanza italic">
+    <p>The woman who survived her hardest season</p>
+    <p>will build things that outlive her.</p>
+    <p>Younger women will look at her life</p>
+    <p>and think:</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>If she did it —<br/>maybe I can too.</p>
+  </div>
+
+  <div class="stanza accent">
+    <p>She will.</p>
+    <p>She already has.</p>
+    <p>She is.</p>
+  </div>
+
+  <!-- CLOSING SIGNATURE -->
+  <div class="closing">
+    <div class="closing-intro">With love, pride, and unwavering belief —</div>
+    <div class="closing-name">Habiba Musa (Baby)</div>
+    <div class="closing-date">International Women's Day · March 2025</div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    <p>This letter was born from one woman's story — and dedicated to <strong>every woman</strong> who has ever carried a quiet crown, survived a hard week, and chosen to keep going.</p>
+  </div>
+
+</div>
+
+<script>
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('scrollBar').style.width = progress + '%';
+  });
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.stanza, .section-label, .ornament-divider, .pull-quote, .closing, .footer-note').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Stagger siblings
+  document.querySelectorAll('.stanza').forEach((el, i) => {
+    el.style.transitionDelay = '0s';
+  });
+</script>
+</body>
+</html>
